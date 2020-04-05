@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:task="http://www.springframework.org/schema/task"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task.xsd">
+
+    <!--定时任务触发类-->
+    <bean id="myTask" class="gentle.Scheduler.JyTask"></bean>
+
+    <!--执行频率-->
+    <task:scheduled-tasks>
+        <!--每 2 秒执行一次-->
+        <!--<task:scheduled ref="myTask" method="doScheduler" cron="0/2 * * * * ?" />-->
+
+        <task:scheduled ref="myTask" method="doScheduler" cron="* * * * 9 ?" />
+    </task:scheduled-tasks>
+
+</beans>

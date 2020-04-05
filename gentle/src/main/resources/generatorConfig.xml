@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<!--mybatis方式-->
+<generatorConfiguration>
+
+    <!-- mysql 连接数据库jar 这里选择自己本地位置 -->
+    <classPathEntry location="D:\gentle\gentle\mysql-connector-java-5.1.39.jar"/>
+
+    <context id="Mysql" targetRuntime="MyBatis3" defaultModelType="flat">
+        <property name="beginningDelimiter" value="`"/>
+        <property name="endingDelimiter" value="`"/>
+        <property name="javaFileEncoding" value="UTF-8"/>
+
+        <commentGenerator>
+            <!--&lt;!&ndash; 是否去除自动生成的注释 true：是 ： false:否 &ndash;&gt;-->
+            <property name="suppressAllComments" value="true"/>
+        </commentGenerator>
+        <!--数据库连接的信息：驱动类、连接地址、用户名、密码 -->
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://localhost:3306/gentle"
+                        userId="root"
+                        password="123456">
+        </jdbcConnection>
+
+        <!-- 生成实体类的包名和位置 -->
+        <javaModelGenerator targetPackage="gentle.entity"
+                            targetProject="src/main/java">
+        </javaModelGenerator>
+
+        <!-- 生成 mapper.xml 映射文件的包名和位置-->
+        <sqlMapGenerator targetPackage="gentle.mapper.xml"
+                         targetProject="src/main/java">
+        </sqlMapGenerator>
+
+        <!-- 生成 mapper 的包名和位置-->
+        <javaClientGenerator type="XMLMAPPER"
+                             targetPackage="gentle.mapper"
+                             targetProject="src/main/java">
+        </javaClientGenerator>
+
+        <!-- 生成表： tableName 表名或视图名 、domainObjectName 实体类名  -->
+        <table tableName="theUser" domainObjectName="TheUser">
+            <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
+        </table>
+
+        <table tableName="resources" domainObjectName="Resources">
+            <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
+        </table>
+
+        <table tableName="role" domainObjectName="Role">
+            <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
+        </table>
+
+    </context>
+</generatorConfiguration>
